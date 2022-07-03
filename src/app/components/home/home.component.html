@@ -1,0 +1,53 @@
+<mat-drawer-container class="example-container" style="height: 100vh;" autosize>
+    <mat-drawer #drawer class="sidenav" opened="true" mode="push" from="right">
+
+        <mat-list>
+            <div><img src="../../../assets/images/logo.png" alt="" style="max-width: 100%;max-height: 100%;"></div>
+            <div *ngIf="usertype == 'client'">
+                <mat-divider></mat-divider>
+                <br>
+                <button (click)="openNewcommande()" mat-flat-button color="warn" style="margin-bottom: 20px;">
+                    <mat-icon>add</mat-icon> Nouvelle commande
+                </button>
+            </div>
+            <mat-divider></mat-divider>
+            <mat-selection-list #shoes [multiple]="false">
+                <mat-list-option *ngFor="let folder of folders">
+                    <mat-icon mat-list-icon>{{folder.icon}}</mat-icon>
+                    <div mat-line>{{folder.nom}}</div>
+                    <div mat-line> {{folder.url}} </div>
+                </mat-list-option>
+            </mat-selection-list>
+            <mat-divider></mat-divider>
+            <div class="abtn">
+                <div style="width: 100%; margin-left: auto;
+                margin-right: auto;">
+                    <mat-icon style="margin: 5px;">brightness_5</mat-icon>
+                    <mat-slide-toggle style="margin: 5px;" [formControl]="toggleControl"></mat-slide-toggle>
+                    <mat-icon style="margin: 5px;">bedtime</mat-icon>
+                </div>
+            </div>
+        </mat-list>
+    </mat-drawer>
+    <mat-toolbar color="primary">
+        <button (click)="drawer.toggle()" mat-icon-button class="example-icon favorite-icon" >
+            <mat-icon>menu</mat-icon>
+        </button>
+        <span>UPTEXTEWRITTER</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu" style="margin-right: 10px;"
+            matTooltip="Notifications">
+            <mat-icon [matBadge]="variablelocale.notification" matBadgeColor="accent" 
+            matBadgePosition="after" matBadgeSize="small"
+            >notifications</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" style="height: 90vh; overflow-y: scroll;">
+            <!--app-notification></app-notification-->
+            <div>liste Notifications</div>
+        </mat-menu>
+        <button class="marginbutton" (click)="logOut()" mat-stroked-button color="accent">
+            Déconnexion
+        </button>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+</mat-drawer-container>

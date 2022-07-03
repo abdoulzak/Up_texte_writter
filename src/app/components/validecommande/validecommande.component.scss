@@ -1,0 +1,16 @@
+mat-card{
+    margin: 20px auto;
+    padding: 10px;
+    width: 50%;
+    text-align: center;
+}
+mat-divider{
+    width: 80% !important;
+    left: 10% !important;
+}
+mat-card-content{
+    text-align: left;
+}
+mat-card-content p{
+    margin-top: 24px;
+}

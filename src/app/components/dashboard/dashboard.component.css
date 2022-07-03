@@ -1,0 +1,33 @@
+.contentheader{
+    margin-bottom: 40px;
+}
+.content{
+    display: flex;
+}
+.content2{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px 2em;
+}
+.table{
+    margin: 10px;
+}
+.form{
+    margin: 10px;
+}
+.form mat-card{
+   padding: 20px;
+}
+.matcard{
+    width: 350px;
+    margin: 10px;
+}
+.mat-expansion-panel{
+    margin: 10px;
+}
+@media screen and (max-width: 700px) {
+    .content {
+      display: flex;
+      flex-direction: column;
+    }
+}

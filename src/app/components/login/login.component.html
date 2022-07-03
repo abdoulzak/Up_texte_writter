@@ -1,0 +1,201 @@
+<div class="loginform">
+  <div class="content">
+    <div class="colonne1">
+      <div class="colcontent">
+        <a class="logo" href="./">
+          <img src="../../../assets/images/logo.png" height="100" alt="">
+        </a>
+        <p class="bienvenue">
+          PLATEFORME DE REDACTION WEB DE REFERENCE POUR COMMANDER DES TEXTES PERTINENTS !
+        </p>
+        <div>
+          <button mat-raised-button color="warn" (click)="changePage('redacteur')" style="margin-right: 10px;">Devenez Rédacteur</button>
+          <button mat-raised-button color="primary" (click)="changePage('client')">Commandez du texte</button>
+        </div>
+      </div>
+    </div>
+    <div class="colonne2">
+      <div class="colcontent" *ngIf="loginpage">
+        <div>
+          <h2 class="titre">Connectez-vous à votre compte</h2>
+        </div>
+        <div>
+          <mat-card>
+            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+              <div class="login-form">
+                <mat-form-field class="login-full-width" appearance="fill">
+                  <mat-label>E-mail</mat-label>
+                  <input type="email" formControlName="email"
+                        matInput placeholder="johndoe@example.com">
+                  <mat-error>
+                    Entrez un email valid
+                  </mat-error>
+                </mat-form-field>
+                
+                <mat-form-field class="login-full-width" appearance="fill">
+                  <mat-label>Mot de passe</mat-label>
+                  <span matPrefix> &nbsp;</span>
+                  <input type="password" matInput formControlName="password">
+                  <mat-error>
+                    Entrez un mot de passe valid
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <p *ngIf="message" class="erreur">{{message}}</p>
+              <div>
+                <mat-spinner *ngIf="isLoarding"></mat-spinner>
+                <button *ngIf="!isLoarding" mat-flat-button color="primary" type="submit">Se connecter</button>
+              </div>
+              <div>
+                <button mat-button>Mot de passe oublié</button>
+              </div>
+            </form>
+          </mat-card>
+        </div>
+      </div>
+      <!-- inscription -->
+      <div *ngIf="!loginpage">
+        <div class="colcontent" style="background-color: #f04735;" *ngIf="redacteurpage">
+          <div>
+            <h2 class="titre">Creer un compte rédacteur</h2>
+          </div>
+          <div>
+            <mat-card>
+              <form [formGroup]="redacteurForm" (ngSubmit)="onRegisterRedacteur()">
+                <div class="login-form">
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Nom</mat-label>
+                    <input type="text" formControlName="nom" matInput placeholder="John" required>
+                    <mat-error>
+                      Renseigné le nom
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Prenom</mat-label>
+                    <input type="text" formControlName="prenom" matInput placeholder="Doe" required>
+                    <mat-error>
+                      Renseigné le prenom
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Numéro de téléphone</mat-label>
+                    <!--span matPrefix>+229 &nbsp;</span-->
+                    <input type="tel" formControlName="numero" maxlength="8"
+                          matInput placeholder="90 10 10 02" required>
+                    <mat-error>
+                      Numéro de téléphone invalid
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>E-mail</mat-label>
+                    <input type="email" formControlName="email"
+                          matInput placeholder="email@email.com" required>
+                    <mat-error>
+                      E-mail invalid
+                    </mat-error>
+                  </mat-form-field>                  
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Mot de passe </mat-label>
+                    <input type="password" matInput formControlName="password" required>
+                    <mat-error>
+                      Mot de passe trop court
+                    </mat-error>
+                  </mat-form-field>
+                  <small>lettre minuscule et majuscule, <br> 
+                    chiffre, <br>
+                    caractère spécial, <br> 
+                    8 caractères</small>
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Confirmer le mot de passe</mat-label>
+                    <input type="password" matInput formControlName="confirmPassword" required>
+                    <mat-error>
+                      Mot de passe différent
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <p *ngIf="message" class="erreur">{{message}}</p>
+                <div>
+                  <mat-spinner *ngIf="redacteurbtn"></mat-spinner>
+                  <button *ngIf="!redacteurbtn" mat-flat-button color="warn" type="submit">Inscription</button>
+                </div>
+                <div>
+                  <button mat-button (click)="changePage('login')">J'ai déjâ un compte</button>
+                </div>
+              </form>
+            </mat-card>
+          </div>
+        </div>
+        <div class="colcontent" style="background-color: #3f53b5;" *ngIf="clientpage">
+          <div>
+            <h2 class="titre">Creer un compte client</h2>
+          </div>
+          <div>
+            <mat-card>
+              <form [formGroup]="clientForm" (ngSubmit)="onRegisterClient()">
+                <div class="login-form">
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Nom</mat-label>
+                    <input type="text" formControlName="nom" matInput placeholder="John" required>
+                    <mat-error>
+                      Renseigné le nom
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Prenom</mat-label>
+                    <input type="text" formControlName="prenom" matInput placeholder="Doe" required>
+                    <mat-error>
+                      Renseigné le prenom
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Numéro de téléphone</mat-label>
+                    <!--span matPrefix>+229 &nbsp;</span-->
+                    <input type="tel" formControlName="numero" maxlength="8"
+                          matInput placeholder="90 10 10 02" required>
+                    <mat-error>
+                      Numéro de téléphone invalid
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>E-mail</mat-label>
+                    <input type="email" formControlName="email"
+                          matInput placeholder="email@email.com" required>
+                    <mat-error>
+                      E-mail invalid
+                    </mat-error>
+                  </mat-form-field>                  
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Mot de passe</mat-label>
+                    <input type="password" matInput formControlName="password" required>
+                    <mat-error>
+                      Mot de passe trop court
+                    </mat-error>
+                  </mat-form-field>
+                  <small>lettre minuscule et majuscule, <br> 
+                    chiffre, <br>
+                    caractère spécial, <br> 
+                    8 caractères</small>
+                  <mat-form-field class="login-full-width" appearance="fill">
+                    <mat-label>Confirmer le mot de passe</mat-label>
+                    <input type="password" matInput formControlName="confirmPassword" required>
+                    <mat-error>
+                      Mot de passe différent
+                    </mat-error>
+                  </mat-form-field>
+                </div>
+                <p *ngIf="message" class="erreur">{{message}}</p>
+                <div>
+                  <mat-spinner *ngIf="clientbtn"></mat-spinner>
+                  <button *ngIf="!clientbtn" mat-flat-button color="primary" type="submit">Inscription</button>
+                </div>
+                <div>
+                  <button mat-button (click)="changePage('login')">J'ai déjâ un compte</button>
+                </div>
+              </form>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

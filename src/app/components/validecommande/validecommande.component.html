@@ -1,0 +1,76 @@
+<mat-spinner *ngIf="isLoarding"></mat-spinner>
+<div *ngIf="!isLoarding">
+    <div style="text-align: center; padding: 20px;" *ngIf="statut=='null' && !isLoardingKkia">
+        <h2>Validation de la commande</h2>
+        <div>
+            <mat-card>
+                <mat-card-content>
+                    <p>
+                        <b>Titre :</b>{{titre}}
+                    </p>
+                    <mat-divider></mat-divider>
+                    <p>
+                        <b>Domaine de rédaction :</b> {{domaine}}
+                    </p>
+                    <mat-divider></mat-divider>
+                    <p>
+                        <b>langue :</b> {{langue}}
+                    </p>
+                    <mat-divider></mat-divider>
+                    <p>
+                        <b>Nombre de mot :</b> {{nombredemot}}
+                    </p>
+                </mat-card-content>
+            </mat-card>
+            
+            <mat-card>
+                <mat-card-content>
+                    <p>
+                        <b>Qualite du texte :</b> {{qualite}}
+                    </p>
+                    <mat-divider></mat-divider>
+                    <p>
+                        <b>Date livraison :</b> {{datelivraison}}
+                    </p>
+                    <mat-divider></mat-divider>
+                    <p>
+                        <b>Expression clef :</b> {{expressionclef}}
+                    </p>
+                </mat-card-content>
+            </mat-card>
+            <mat-card>
+                <mat-card-content>
+                    <p>
+                        <b>consigne pour le rédacteur :</b> {{consigne}}
+                    </p>
+                    <mat-divider></mat-divider>
+                    <p>
+                        <b>piecejoint :</b> {{piecejoint}}
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div>
+            <div style="margin: 40px;">
+                <button mat-flat-button color="warn" (click)="open()">Payer {{montant}} F cfa</button>
+                <button mat-flat-button style="margin-left: 10px;"><mat-icon>arrow_forward_ios</mat-icon>Annuler</button>
+            </div>
+            <p><i>
+                En payant cette commande vous acceptez les conditions générales d'utilisation
+            </i></p>
+        </div>
+    </div>
+    <div style="text-align: center; padding: 20px;" *ngIf="statut=='payer' && !isLoardingKkia">
+        <h1><mat-icon>brush</mat-icon></h1>
+        <h2>Cette commande et déja payer</h2>
+    </div>
+    <div style="text-align: center; padding: 20px;" *ngIf="isLoardingKkia">
+        <h1><mat-icon>brush</mat-icon></h1>
+        <h2>Payement effectuer</h2>
+    </div>
+</div>
+<div style="margin: 4%; text-align: center;">
+    <img src="../../../assets/images/logo.png" alt="">
+    <p>
+        Site design / logo © 2022 uptextewritter;<a href="#" target="_blank">Licence</a></p>
+</div>

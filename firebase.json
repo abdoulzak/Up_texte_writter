@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/uptextewritter",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

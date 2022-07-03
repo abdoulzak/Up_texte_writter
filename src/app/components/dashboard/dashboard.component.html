@@ -1,0 +1,277 @@
+<div class="content">
+    <div class="form">
+        <mat-card>
+            <h2>EN COURS</h2>
+            <b>0</b>
+        </mat-card>
+    </div>
+    <div class="form">
+        <mat-card>
+            <h2>EN PRIORITÉ</h2>
+            <b>0</b>
+        </mat-card>
+    </div>
+    <div class="form">
+        <mat-card>
+            <h2>TEXTE VALIDÉ ET PAYÉ</h2>
+            <b>0</b>
+        </mat-card>
+    </div>
+    <div class="form">
+        <mat-card>
+          <h2>TOTALE</h2>
+          <b>0</b>
+        </mat-card>
+    </div>
+</div><br>
+<div class="content">
+  <div style="padding-left: 10px;">
+    <mat-button-toggle-group>
+      <mat-button-toggle (change)="changepage('1')">Mes textes</mat-button-toggle>
+      <mat-button-toggle (change)="changepage('2')" *ngIf="usertype == 'redacteur'">Rechercher un texte</mat-button-toggle>
+      <mat-button-toggle (change)="changepage('3')">Rédacteur</mat-button-toggle>
+      <mat-button-toggle (change)="changepage('4')">Message</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>
+  <mat-divider></mat-divider>
+  <div *ngIf="mestexte">
+    <!--div-->
+    <div>
+      <h2 class="form">Mes textes</h2>
+      <mat-grid-list cols="3" *ngIf="recherchetexte && usertype == 'client'">
+        <mat-grid-tile
+            *ngFor="let item of listemestextesclient">
+            <mat-card class="matcard">
+              <mat-card-subtitle>Titre</mat-card-subtitle>
+              <mat-card-title>{{item.titre}}</mat-card-title>
+              <mat-divider inset></mat-divider>
+              <mat-card-content>
+                <div>
+                  <p>Domaine <br>
+                  <b>{{item.domaine}}</b></p>
+                </div>
+                <div>
+                  <p>Nombre de mot <br>
+                  <b>{{item.nombredemot}} Mots</b></p>
+                </div>
+                <div>
+                  <p>Date de livraison <br>
+                  <b>{{item.datelivraison }}</b></p>
+                </div>
+              </mat-card-content>
+              <mat-divider inset></mat-divider>
+              <mat-card-actions>
+                <button mat-button>SOUMETTRE</button>
+              </mat-card-actions>
+              <!--mat-card-footer>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+              </mat-card-footer-->
+            </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="3" *ngIf="recherchetexte && usertype == 'redacteur'">
+        <mat-grid-tile
+            *ngFor="let item of listemestextesredacteur">
+            <mat-card class="matcard">
+              <mat-card-subtitle>Titre</mat-card-subtitle>
+              <mat-card-title>{{item.titre}}</mat-card-title>
+              <mat-divider inset></mat-divider>
+              <mat-card-content>
+                <div>
+                  <p>Domaine <br>
+                  <b>{{item.domaine}}</b></p>
+                </div>
+                <div>
+                  <p>Nombre de mot <br>
+                  <b>{{item.nombredemot}} Mots</b></p>
+                </div>
+                <div>
+                  <p>Date de livraison <br>
+                  <b>{{item.datelivraison }}</b></p>
+                </div>
+              </mat-card-content>
+              <mat-divider inset></mat-divider>
+              <mat-card-actions>
+                <button mat-button>SOUMETTRE</button>
+              </mat-card-actions>
+              <!--mat-card-footer>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+              </mat-card-footer-->
+            </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+    <!--div-->
+  </div><br>
+  <div *ngIf="recherchetexte && usertype == 'redacteur'">
+    <div class="form">
+      <mat-form-field class="example-form-field" appearance="fill">
+        <input matInput type="text" placeholder="Mot clé">
+        <button matSuffix mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-grid-list cols="3">
+        <mat-grid-tile
+            *ngFor="let item of listedata">
+            <mat-card class="matcard">
+              <mat-card-subtitle>Titre</mat-card-subtitle>
+              <mat-card-title>{{item.titre}}</mat-card-title>
+              <mat-divider inset></mat-divider>
+              <mat-card-content>
+                <div>
+                  <p>Domaine <br>
+                  <b>{{item.domaine}}</b></p>
+                </div>
+                <div>
+                  <p>Nombre de mot <br>
+                  <b>{{item.nombredemot}} Mots</b></p>
+                </div>
+                <div>
+                  <p>Date de livraison <br>
+                  <b>{{item.datelivraison }}</b></p>
+                </div>
+              </mat-card-content>
+              <mat-divider inset></mat-divider>
+              <mat-card-actions>
+                <button mat-button>SOUMETTRE</button>
+              </mat-card-actions>
+              <!--mat-card-footer>
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+              </mat-card-footer-->
+            </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </div><br>
+  <div class="" *ngIf="redacteurliste">
+    <div class="content">
+      <mat-form-field class="example-form-field" appearance="fill">
+        <input matInput type="text" placeholder="Mot clé">
+        <button matSuffix mat-icon-button>
+          <mat-icon>search</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div class="content">
+      <div class="form">
+        <mat-card class="example-card">
+          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+          <mat-card-title>Shiba Inu</mat-card-title>
+          <mat-card-content>
+            <p>This card has divider and indeterminate progress as footer</p>
+            <p>This card has divider and indeterminate progress as footer</p>
+            <b>40</b>/100 Mots
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions>
+            <button mat-button>CONTINUER</button>
+            <button mat-button>AVORTER</button>
+          </mat-card-actions>
+          <mat-card-footer>
+            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+      <div class="form">
+        <mat-card class="example-card">
+          <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+          <mat-card-title>Shiba Inu</mat-card-title>
+          <mat-card-content>
+            <p>This card has divider and indeterminate progress as footer</p>
+            <p>This card has divider and indeterminate progress as footer</p>
+            <b>40</b>/100 Mots
+          </mat-card-content>
+          <mat-divider inset></mat-divider>
+          <mat-card-actions>
+            <button mat-button>CONTINUER</button>
+            <button mat-button>AVORTER</button>
+          </mat-card-actions>
+          <mat-card-footer>
+            <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+    </div>
+  </div><br>
+  <div class="content" *ngIf="message">
+    <div class="form">
+      <mat-card class="example-card">
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-content>
+          <p>This card has divider and indeterminate progress as footer</p>
+          <p>This card has divider and indeterminate progress as footer</p>
+          <b>40</b>/100 Mots
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button>CONTINUER</button>
+          <button mat-button>AVORTER</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+    <div class="form">
+      <mat-card class="example-card">
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-content>
+          <p>This card has divider and indeterminate progress as footer</p>
+          <p>This card has divider and indeterminate progress as footer</p>
+          <b>40</b>/100 Mots
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button>CONTINUER</button>
+          <button mat-button>AVORTER</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+    <div class="form">
+      <mat-card class="example-card">
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-content>
+          <p>This card has divider and indeterminate progress as footer</p>
+          <p>This card has divider and indeterminate progress as footer</p>
+          <b>40</b>/100 Mots
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button>CONTINUER</button>
+          <button mat-button>AVORTER</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+    <div class="form">
+      <mat-card class="example-card">
+        <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+        <mat-card-title>Shiba Inu</mat-card-title>
+        <mat-card-content>
+          <p>This card has divider and indeterminate progress as footer</p>
+          <p>This card has divider and indeterminate progress as footer</p>
+          <b>40</b>/100 Mots
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+          <button mat-button>CONTINUER</button>
+          <button mat-button>AVORTER</button>
+        </mat-card-actions>
+        <mat-card-footer>
+          <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div><br>

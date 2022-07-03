@@ -1,0 +1,45 @@
+<div class="contentlogin">
+  <div class="login">
+    <div class="login-content">
+      <h3>Saving Money</h3><br><br><br>
+      <h2>Inscription</h2><br>
+      <label for="phone">Numero de téléphone</label>
+      <!--div class="logininput">
+        <input type="text" disabled="true" class="input cyti" value="+229" maxlength="3">
+        <input autofocus (keyup)="onDigitInput($event)" type="text" [(ngModel)]="phoneNumber.country" class="input" placeholder="90" maxlength="2">
+        <input autofocus (keyup)="onDigitInput($event)" type="text" [(ngModel)]="phoneNumber.area" class="input" placeholder="00" maxlength="2">
+        <input autofocus (keyup)="onDigitInput($event)" type="text" [(ngModel)]="phoneNumber.prefix" class="input" placeholder="00" maxlength="2">
+        <input autofocus (keyup)="onDigitInput($event)" type="text" [(ngModel)]="phoneNumber.line" class="input" placeholder="00" maxlength="2">
+      </div-->  
+
+      <div class="password">
+        <mat-form-field >
+          <input #password (input)="savepassword(password.value)" matInput  [type]="hide ? 'password' : 'text' " placeholder="Mot de passe">
+          <button mat-icon-button matSuffix (click)="hide=!hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    
+      <p *ngIf="message" class="erreur">{{message}}</p>
+      <div class="button-login">
+        <button mat-flat-button color="primary" disabled="{{isLoarding}}" (click)="onSubmit()">S'inscrire</button>
+        <span class="nav-tool-items"><br>
+          <em>Vous êtes déjà inscrit ?</em>
+          <a mat-button mat-basic-button color="accent" routerLink="/login">Connexion</a>
+        </span>
+      </div>    
+    </div>
+  </div>
+  <div class="social">
+    <div class="social-content">
+      <p>Inscrivez-vous maintenant sur <b>Saving Money</b> !</p><br><br>
+      <h2>
+        Écoutez les nouveautés de <b>Saving Money</b> <br>
+        et plongez dans l'avenir de l'inteligence finacière,<br>
+        des panels en direct et un accès direct à des experts ...<br>
+      </h2>
+      <a href="#">Apprendre encore plus... </a>
+    </div>
+  </div>
+</div>

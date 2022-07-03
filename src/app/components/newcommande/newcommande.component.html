@@ -1,0 +1,112 @@
+<div style="padding: 20px;">
+    <div *ngIf="!isLoarding">
+      <h2>Commande</h2>
+      <form [formGroup]="commandeForm" (ngSubmit)="onSubmit()">
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Titre</mat-label>
+            <input type="text" formControlName="titre"
+                  matInput placeholder="titre">
+            <mat-error>
+              Entrez le titre
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Domaine de rédaction</mat-label>
+            <input type="text" formControlName="domaine"
+                  matInput placeholder="Domaine de rédaction">
+            <mat-error>
+              Entrez le domaine de rédaction
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Langue</mat-label>
+            <mat-select formControlName="langue">
+              <mat-option *ngFor="let langue of langues" value="langue">
+                {{langue}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Nombre de mot</mat-label>
+            <input type="number" formControlName="nombredemot"
+                  matInput placeholder="nombredemot">
+            <mat-error>
+              Entrez le nombre de mot
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Qualite du texte</mat-label>
+            <mat-select formControlName="qualite">
+              <ng-container *ngFor="let qualite of qualites">
+                  <mat-option [value]="qualite" *ngIf="qualite.statut == 'actif'">
+                    {{qualite.qualite}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>date de livraison</mat-label>
+            <input matInput minDate="" formControlName="datelivraison" [matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker touchUi #picker></mat-datepicker>
+          </mat-form-field>
+          <p>
+            <i>La date de livraison est une date limite souhaitée à laquelle le travail devrait être rendu.</i>
+          </p>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Expression clef du texte</mat-label>
+            <mat-chip-list #chipList multiple>
+              <mat-chip
+                  *ngFor="let keyword of keywords"
+                  (removed)="removeKeyword(keyword)">
+                {{keyword}}
+              </mat-chip>
+              <input
+                matInput
+                formControlName="expressionclef"
+                placeholder="Nouvelle expression clef..."
+                [matChipInputFor]="chipList"
+                (matChipInputTokenEnd)="addKeywordFromInput($event)">
+            </mat-chip-list>
+          </mat-form-field>
+          <p>
+            <i>Plusieurs choix possible.</i>
+          </p>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Consigne pour le rédacteur</mat-label>
+            <input type="text" formControlName="consigne"
+                  matInput placeholder="Article de blog">
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Url de document joint (maquette rédactionnelle, plan ou dessin pour comprendre... )</mat-label>
+            <input type="url" formControlName="piecejoint"
+                  matInput placeholder="https://">
+          </mat-form-field>
+        </div>
+        <div>
+          <button mat-flat-button color="warn" style="margin-bottom: 20px;">
+            Enrégistrez<mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+      </form>
+    </div>
+    <div *ngIf="isLoarding">
+      <mat-spinner *ngIf="isLoarding"></mat-spinner>
+    </div>
+</div>
