@@ -20,6 +20,7 @@ import { AfterLoginService } from './services/after-login.service';
 import { AuthInterceptorProvider } from './http-interceptor/auth-interceptor';
 import { NewcommandeComponent } from './components/newcommande/newcommande.component';
 import { ValidecommandeComponent } from './components/validecommande/validecommande.component';
+import { ConfirmationprisetexteComponent } from './components/confirmationprisetexte/confirmationprisetexte.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ValidecommandeComponent } from './components/validecommande/validecomma
     NumberMaskDirective,
     NumberIntMaskDirective,
     NewcommandeComponent,
-    ValidecommandeComponent
+    ValidecommandeComponent,
+    ConfirmationprisetexteComponent
   ],
   imports: [
     BrowserModule,

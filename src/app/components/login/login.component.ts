@@ -5,6 +5,7 @@ import { User, variablelocale } from 'src/app/models/request';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -84,7 +85,7 @@ export class LoginComponent implements OnInit {
       this.redacteurbtn = false;
       return;
     }
-    this.httpClient.post(`${this.variablelocale.user_url}user/register/redacteur`, this.redacteurForm.value)
+    this.httpClient.post(`${environment.url}user/register/redacteur`, this.redacteurForm.value)
       .subscribe((data:any) => {
         this.redacteurbtn= false;
         if (data){
@@ -107,7 +108,7 @@ export class LoginComponent implements OnInit {
       this.clientbtn = false;
       return;
     }
-    this.httpClient.post(`${this.variablelocale.user_url}user/register/client`, this.clientForm.value)
+    this.httpClient.post(`${environment.url}user/register/client`, this.clientForm.value)
       .subscribe((data:any) => {
         this.clientbtn= false;
         if (data._id){
@@ -128,7 +129,7 @@ export class LoginComponent implements OnInit {
       this.regiterbtn = false;
       return;
     }
-    this.httpClient.post(`${this.variablelocale.user_url}user/login`, this.loginForm.value)
+    this.httpClient.post(`${environment.url}user/login`, this.loginForm.value)
     .subscribe((data:any) => {        
       this.isLoarding= false;
       console.log(data);
@@ -137,7 +138,7 @@ export class LoginComponent implements OnInit {
       }
     },
     (erreur)=> {
-      this.message = "Le compte avec cet email n'existe pas!";
+      this.message = "E-mail ou mot de passe invalide!";
       this.isLoarding= false;
     } );
   }

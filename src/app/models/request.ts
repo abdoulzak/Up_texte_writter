@@ -41,24 +41,16 @@ export class User{
 }
 
 export class variablelocale{
-  /*pour marchand*/
-    static numeropourdepot = "";
-    static souscription: any;
-    static operation = "";
-    static user = "";
+
+  static selectetexte: any;
 
   static toggleControl = new FormControl(false);
-  /***************/
-  static user_url = environment.url
-  static souscription_url = environment.url
-  static operation_url = environment.url
 
   static notification = 0;
-  //static toggleControl: any;
 
 
   static notificationCount(http: HttpClient):any{
-    
+   /* 
     http.post(`${variablelocale.souscription_url}/api/liste_modif_ramassage`, {
       phoneNumber: "+229"+localStorage.getItem('phone'),
     })
@@ -70,6 +62,6 @@ export class variablelocale{
           }
         }
       }
-    });
+    });*/
   }
 }

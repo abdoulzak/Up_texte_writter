@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card p-2 shadow" style="height: 78vh; overflow-y: scroll;">
+
+                <div class="pt-2">
+                    <div *ngIf="startsave">save</div>                    
+                    <div id="editeur" #editeur (input)="autoSaveEditeur(editeur.innerHTML)" class="card" contentEditable="true" [innerHTML]="detail"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

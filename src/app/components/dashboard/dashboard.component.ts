@@ -6,10 +6,10 @@ import { Observable } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 import { variablelocale } from 'src/app/models/request';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { RequestService } from 'src/app/services/request.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { ConfirmationprisetexteComponent } from '../confirmationprisetexte/confirmationprisetexte.component';
 
 
 @Component({
@@ -35,15 +35,11 @@ export class DashboardComponent implements OnInit {
 
   constructor(private httpClient: HttpClient, 
               private router: Router,
-              private httpRequest: RequestService,
               private _bottomSheet: MatBottomSheet) {}
 
   openBottomSheet(data: any): void {
-    //this._bottomSheet.open(DepotComponent);
-  }
-
-  openBottomSheet2(): void {
-    //this._bottomSheet.open(BottomSheetOverviewSouscription);
+    this.variablelocale.selectetexte = data
+    this._bottomSheet.open(ConfirmationprisetexteComponent);
   }
 
   ngOnInit(): void {
@@ -94,10 +90,12 @@ export class DashboardComponent implements OnInit {
   }
   listemestexteclient(){
     this.isLoarding = true;
-    this.httpClient.get(`${environment.url}commande/client/${localStorage.getItem("_id")}`)
+    this.httpClient.get(`${environment.url}commande/${this.usertype}/${localStorage.getItem("_id")}`)
     .subscribe((res:any) => {
       this.listemestextesclient = res;
       this.isLoarding = false;
+      console.log(this.listemestextesclient);
+      
     },
     (error)=> { 
       this.isLoarding = false;

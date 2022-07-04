@@ -39,10 +39,11 @@
     <!--div-->
     <div>
       <h2 class="form">Mes textes</h2>
-      <mat-grid-list cols="3" *ngIf="recherchetexte && usertype == 'client'">
+      <mat-grid-list cols="3" *ngIf="mestexte && usertype == 'client'">
         <mat-grid-tile
             *ngFor="let item of listemestextesclient">
-            <mat-card class="matcard">
+            <mat-card class="matcard" matBadge="." matBadgeColor="accent" 
+            matBadgePosition="after" matBadgeSize="large">
               <mat-card-subtitle>Titre</mat-card-subtitle>
               <mat-card-title>{{item.titre}}</mat-card-title>
               <mat-divider inset></mat-divider>
@@ -62,15 +63,12 @@
               </mat-card-content>
               <mat-divider inset></mat-divider>
               <mat-card-actions>
-                <button mat-button>SOUMETTRE</button>
+                <button mat-flat-button color="warn">supprimer</button>
               </mat-card-actions>
-              <!--mat-card-footer>
-                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-              </mat-card-footer-->
             </mat-card>
         </mat-grid-tile>
       </mat-grid-list>
-      <mat-grid-list cols="3" *ngIf="recherchetexte && usertype == 'redacteur'">
+      <!--mat-grid-list cols="3" *ngIf="recherchetexte && usertype == 'redacteur'">
         <mat-grid-tile
             *ngFor="let item of listemestextesredacteur">
             <mat-card class="matcard">
@@ -93,14 +91,11 @@
               </mat-card-content>
               <mat-divider inset></mat-divider>
               <mat-card-actions>
-                <button mat-button>SOUMETTRE</button>
+                <button mat-flat-button color="warn" (click)="openBottomSheet(item._id)">Soumission</button>
               </mat-card-actions>
-              <!--mat-card-footer>
-                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-              </mat-card-footer-->
             </mat-card>
         </mat-grid-tile>
-      </mat-grid-list>
+      </mat-grid-list-->
     </div>
     <!--div-->
   </div><br>
@@ -137,7 +132,7 @@
               </mat-card-content>
               <mat-divider inset></mat-divider>
               <mat-card-actions>
-                <button mat-button>SOUMETTRE</button>
+                <button mat-flat-button color="warn" (click)="openBottomSheet(item)">Soumission</button>
               </mat-card-actions>
               <!--mat-card-footer>
                 <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>

@@ -1,0 +1,32 @@
+<h2 style="color: #3f51b5;">Confirmation</h2>
+<div *ngIf="!confirmation">
+    <mat-card style="background-color: #3f51b5; color: #fff;">
+        <mat-card-subtitle style="color: #fff;">Titre</mat-card-subtitle>
+        <mat-card-title>{{item.titre}}</mat-card-title>
+        <mat-divider inset style="background-color: #fff;"></mat-divider>
+        <mat-card-content>
+            <div>
+                <p>Domaine <br>
+                <b>{{item.domaine}}</b></p>
+            </div>
+            <div>
+                <p>Nombre de mot <br>
+                <b>{{item.nombredemot}} Mots</b></p>
+            </div>
+            <div>
+                <p>Date de livraison <br>
+                <b>{{item.datelivraison }}</b></p>
+            </div>
+        </mat-card-content>
+    </mat-card><br><br>
+    <div>Prendre en charge cette commande exige le respect des délais et des condition générale.</div>
+    <div>Acceptez vous prendre en charge cette commande?</div><br>
+    <button mat-flat-button color="primary" (click)="accepter()" *ngIf="!isLoarding">Accepter</button>
+    <mat-spinner *ngIf="isLoarding"></mat-spinner>
+    <br><br><br><br>
+</div>
+<div *ngIf="confirmation">
+    Vous avez pris en charge la rédaxtion de ce texte.
+
+    <button mat-flat-button color="primary" (click)="startredaction()">Commencer la rédaction</button>
+</div>
