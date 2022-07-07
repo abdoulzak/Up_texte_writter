@@ -45,16 +45,13 @@ export class ValidecommandeComponent implements OnInit {
   }
 
   successHandler(data:any) {
-    this.isLoarding= true;
-    console.log(data);
-    
-    /*this.httpClient.get(`${environment.url}commande/payer/${this._id}`)
+    this.httpClient.get(`${environment.url}commande/payer/${this._id}`)
     .subscribe((data:any) => {
-      
+      this.getcommande(this._id);
     },
     (erreur)=> {
       this.isLoarding= false;
-    } );*/
+    } );
   }
   
   ngOnInit() {
