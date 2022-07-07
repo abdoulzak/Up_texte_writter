@@ -33,10 +33,16 @@ export class ValidecommandeComponent implements OnInit {
     private router: Router) { }
   open() {
     openKkiapayWidget({
-      amount: 1000,
-      api_key: "xxxxxxxxxxxxxxx",
+      amount: this.montant,
+      api_key: "d124ad70f42211eca56ad905c440058f",
       sandbox: true,
       phone: "97000000",
+      name: localStorage.getItem('nom')+" "+localStorage.getItem('prenom'),
+      callback: "lo",
+      data: "le data",
+      //url: "<url-vers-votre-logo>",
+      position: "right",
+      theme: "#0095ff",
     })
   }
 
@@ -56,8 +62,6 @@ export class ValidecommandeComponent implements OnInit {
     this.httpClient.get(`${environment.url}commande/${val}`)
     .subscribe((data:any) => {
       this.isLoarding= false;
-      console.log(data);
-      
       if (data._id){
         this.qualite = data.qualite[0].qualite
         this.expressionclef = data.expressionclef
