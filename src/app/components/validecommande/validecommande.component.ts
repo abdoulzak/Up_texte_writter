@@ -37,21 +37,28 @@ export class ValidecommandeComponent implements OnInit {
       api_key: "d124ad70f42211eca56ad905c440058f",
       sandbox: true,
       phone: "97000000",
+      email: localStorage.getItem('email')+"",
       name: localStorage.getItem('nom')+" "+localStorage.getItem('prenom'),
-      callback: "lo",
-      data: "le data",
-      //url: "<url-vers-votre-logo>",
-      //position: "right",
-      theme: "#0095ff",
+      firstname: localStorage.getItem('nom')+"",
+      lastname: localStorage.getItem('nom')+"",
     })
   }
 
-  successHandler() {
-    console.log("payment success...");
+  successHandler(data:any) {
+    this.isLoarding= true;
+    console.log(data);
+    
+    /*this.httpClient.get(`${environment.url}commande/payer/${this._id}`)
+    .subscribe((data:any) => {
+      
+    },
+    (erreur)=> {
+      this.isLoarding= false;
+    } );*/
   }
   
   ngOnInit() {
-    addKkiapayListener('success',this.successHandler)
+    addKkiapayListener('success',this.successHandler);
     this.route.params.subscribe(params => {
       this.getcommande(params['dd']);
     });

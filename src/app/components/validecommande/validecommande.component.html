@@ -1,6 +1,6 @@
 <mat-spinner *ngIf="isLoarding"></mat-spinner>
 <div *ngIf="!isLoarding">
-    <div style="text-align: center; padding: 20px;" *ngIf="statut=='null' && !isLoardingKkia">
+    <div style="text-align: center; padding: 20px;" *ngIf="statut=='null'">
         <h2>Validation de la commande</h2>
         <div>
             <mat-card>
@@ -53,16 +53,17 @@
         <div>
             <div style="margin: 40px;">
                 <button mat-flat-button color="warn" (click)="open()">Payer {{montant}} F cfa</button>
-                <button mat-flat-button style="margin-left: 10px;"><mat-icon>arrow_forward_ios</mat-icon>Annuler</button>
+                <button mat-flat-button style="margin-left: 10px;">Annuler<mat-icon>arrow_forward_ios</mat-icon></button>
             </div>
             <p><i>
                 En payant cette commande vous acceptez les conditions générales d'utilisation
             </i></p>
         </div>
     </div>
-    <div style="text-align: center; padding: 20px;" *ngIf="statut=='payer' && !isLoardingKkia">
+    <div style="text-align: center; padding: 20px;" *ngIf="statut=='payer'">
         <h1><mat-icon>brush</mat-icon></h1>
-        <h2>Cette commande et déja payer</h2>
+        <h2>Cette commande est déjà payer</h2>
+        <button mat-flat-button color="warn">Retour<mat-icon>arrow_forward_ios</mat-icon></button>
     </div>
     <div style="text-align: center; padding: 20px;" *ngIf="isLoardingKkia">
         <h1><mat-icon>brush</mat-icon></h1>
