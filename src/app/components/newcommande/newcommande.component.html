@@ -17,7 +17,7 @@
             <mat-label>Domaines de rédaction</mat-label>
             <mat-select formControlName="domaine">
               <ng-container *ngFor="let domaine of domaines">
-                  <mat-option [value]="domaine.domaine" (click)="getConsigne(domaine._id)">
+                  <mat-option [value]="domaine.domaine">
                     {{domaine.domaine}}</mat-option>
               </ng-container>
             </mat-select>

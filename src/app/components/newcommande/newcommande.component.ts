@@ -34,6 +34,9 @@ export class NewcommandeComponent implements OnInit {
     private _snackBar: MatSnackBar,private _bottomSheetRef: MatBottomSheetRef<NewcommandeComponent>) {}
 
   ngOnInit(): void {
+    this.getNiveau();
+    this.getdomaines();
+    this.getConsigne();
     this.commandeForm = this.formBuilder.group({
       titre: ['', Validators.required],
       domaine: ['', Validators.required],
@@ -47,8 +50,6 @@ export class NewcommandeComponent implements OnInit {
       piecejoint: [''],
     })
 
-    this.getNiveau();
-    this.getdomaines();
   }
 
   langues: any = ['français', 'anglais', 'espagnole'];
@@ -71,8 +72,8 @@ export class NewcommandeComponent implements OnInit {
     });
   }
 
-  getConsigne(data:any) {
-    this.httpClient.get(`${environment.url}consigne/${data}`)
+  getConsigne() {
+    this.httpClient.get(`${environment.url}consigne`)
     .subscribe((data:any) => {
       this.consignes = data 
     });
