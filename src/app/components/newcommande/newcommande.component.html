@@ -14,9 +14,13 @@
         </div>
         <div>
           <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Domaine de rédaction</mat-label>
-            <input type="text" formControlName="domaine"
-                  matInput placeholder="Domaine de rédaction">
+            <mat-label>Domaines de rédaction</mat-label>
+            <mat-select formControlName="domaine">
+              <ng-container *ngFor="let domaine of domaines">
+                  <mat-option [value]="domaine.domaine" (click)="getConsigne(domaine._id)">
+                    {{domaine.domaine}}</mat-option>
+              </ng-container>
+            </mat-select>
             <mat-error>
               Entrez le domaine de rédaction
             </mat-error>
@@ -67,29 +71,33 @@
         <div>
           <mat-form-field class="full-width" appearance="fill">
             <mat-label>Expression clef du texte</mat-label>
-            <mat-chip-list #chipList multiple>
+            <mat-chip-list #chipList aria-label="Video keywords">
               <mat-chip
                   *ngFor="let keyword of keywords"
+                  [selected]="keyword"
+                  [value]="keyword"
                   (removed)="removeKeyword(keyword)">
                 {{keyword}}
               </mat-chip>
               <input
-                matInput
-                formControlName="expressionclef"
                 placeholder="Nouvelle expression clef..."
                 [matChipInputFor]="chipList"
                 (matChipInputTokenEnd)="addKeywordFromInput($event)">
             </mat-chip-list>
           </mat-form-field>
           <p>
-            <i>Plusieurs choix possible.</i>
+            <i>appuyer sur entrée pour insérer une nouvelle expression.</i>
           </p>
         </div>
         <div>
           <mat-form-field class="full-width" appearance="fill">
             <mat-label>Consigne pour le rédacteur</mat-label>
-            <input type="text" formControlName="consigne"
-                  matInput placeholder="Article de blog">
+            <mat-select formControlName="consigne" multiple>
+              <ng-container *ngFor="let consigne of consignes">
+                  <mat-option [value]="consigne.consigne">
+                    {{consigne.consigne}}</mat-option>
+              </ng-container>
+            </mat-select>
           </mat-form-field>
         </div>
         <div>

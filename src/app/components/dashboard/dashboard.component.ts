@@ -44,12 +44,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.liste();
-    console.log(this.usertype);
-    
-    if (this.usertype=='client') {
-      this.listemestexteclient()
-    }
-    
+    this.listemestexteclient()
   }
   changepage(page:string):void {
     if (page == '1') {
@@ -93,9 +88,7 @@ export class DashboardComponent implements OnInit {
     this.httpClient.get(`${environment.url}commande/${this.usertype}/${localStorage.getItem("_id")}`)
     .subscribe((res:any) => {
       this.listemestextesclient = res;
-      this.isLoarding = false;
-      console.log(this.listemestextesclient);
-      
+      this.isLoarding = false;     
     },
     (error)=> { 
       this.isLoarding = false;

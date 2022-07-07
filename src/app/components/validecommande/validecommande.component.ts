@@ -41,7 +41,7 @@ export class ValidecommandeComponent implements OnInit {
       callback: "lo",
       data: "le data",
       //url: "<url-vers-votre-logo>",
-      position: "right",
+      //position: "right",
       theme: "#0095ff",
     })
   }

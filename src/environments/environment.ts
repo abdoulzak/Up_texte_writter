@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  url: 'https://uptextewritter.herokuapp.com/'
-  //url: 'http://localhost:5000/'
+  //url: 'https://uptextewritter.herokuapp.com/'
+  url: 'http://localhost:5000/'
 };
 
 /*

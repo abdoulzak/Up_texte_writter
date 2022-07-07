@@ -48,27 +48,50 @@ export class NewcommandeComponent implements OnInit {
     })
 
     this.getNiveau();
+    this.getdomaines();
   }
 
   langues: any = ['français', 'anglais', 'espagnole'];
   qualites: any = [];
-  keywords: any =['Expression 1', 'Expression 2', 'Expression 3'];
+  domaines: any = [];
+  consignes : any =[];
+  keywords: any =[];
   
+  getdomaines() {
+    this.httpClient.get(`${environment.url}domaine`)
+    .subscribe((data:any) => {
+      this.domaines = data 
+    });
+  }
+
   getNiveau() {
     this.httpClient.get(`${environment.url}niveau`)
     .subscribe((data:any) => {
       this.qualites = data 
-    },
-    (erreur)=> {
-      this.isLoarding= false;
-    } );
+    });
+  }
+
+  getConsigne(data:any) {
+    this.httpClient.get(`${environment.url}consigne/${data}`)
+    .subscribe((data:any) => {
+      this.consignes = data 
+    });
   }
 
   addKeywordFromInput(event: MatChipInputEvent) {
     if (event.value) {
       this.keywords.push(event.value);
       event.chipInput!.clear();
+
+      this.commandeForm.patchValue({
+        expressionclef:  this.keywords
+      });
+
     }
+  }
+
+  onchange(data:any) {
+    console.log(data);
   }
 
   removeKeyword(keyword: string) {
