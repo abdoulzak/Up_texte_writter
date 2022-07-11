@@ -47,8 +47,7 @@ export class ValidecommandeComponent implements OnInit {
   }
 
   open() {
-    this.successHandler()
-    /*openKkiapayWidget({
+    openKkiapayWidget({
       amount: this.montant,
       api_key: "d124ad70f42211eca56ad905c440058f",
       sandbox: true,
@@ -57,7 +56,7 @@ export class ValidecommandeComponent implements OnInit {
       name: localStorage.getItem('nom')+" "+localStorage.getItem('prenom'),
       firstname: localStorage.getItem('nom')+"",
       lastname: localStorage.getItem('nom')+"",
-    })*/
+    })
   }
 
   successHandler() {
