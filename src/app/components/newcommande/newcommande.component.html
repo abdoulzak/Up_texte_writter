@@ -4,18 +4,8 @@
       <form [formGroup]="commandeForm" (ngSubmit)="onSubmit()">
         <div>
           <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Titre</mat-label>
-            <input type="text" formControlName="titre"
-                  matInput placeholder="titre">
-            <mat-error>
-              Entrez le titre
-            </mat-error>
-          </mat-form-field>
-        </div>
-        <div>
-          <mat-form-field class="full-width" appearance="fill">
             <mat-label>Domaines de rédaction</mat-label>
-            <mat-select formControlName="domaine">
+            <mat-select formControlName="domaine" multiple>
               <ng-container *ngFor="let domaine of domaines">
                   <mat-option [value]="domaine.domaine">
                     {{domaine.domaine}}</mat-option>
@@ -23,6 +13,27 @@
             </mat-select>
             <mat-error>
               Entrez le domaine de rédaction
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Type de texte</mat-label>
+            <mat-select formControlName="type">
+              <ng-container *ngFor="let type of types">
+                  <mat-option [value]="type.type" (click)="getconsigne(type.type)">
+                    {{type.type}}</mat-option>
+              </ng-container>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Titre</mat-label>
+            <input type="text" formControlName="titre"
+                  matInput placeholder="titre">
+            <mat-error>
+              Entrez le titre
             </mat-error>
           </mat-form-field>
         </div>
@@ -71,7 +82,7 @@
         <div>
           <mat-form-field class="full-width" appearance="fill">
             <mat-label>Expression clef du texte</mat-label>
-            <mat-chip-list #chipList aria-label="Video keywords">
+            <mat-chip-list #chipList>
               <mat-chip
                   *ngFor="let keyword of keywords"
                   [selected]="keyword"
@@ -91,13 +102,8 @@
         </div>
         <div>
           <mat-form-field class="full-width" appearance="fill">
-            <mat-label>Consigne pour le rédacteur</mat-label>
-            <mat-select formControlName="consigne" multiple>
-              <ng-container *ngFor="let consigne of consignes">
-                  <mat-option [value]="consigne.consigne">
-                    {{consigne.consigne}}</mat-option>
-              </ng-container>
-            </mat-select>
+            <mat-label>Consigne</mat-label>
+            <textarea matInput formControlName="consigne" id="" cols="30" rows="20"></textarea>
           </mat-form-field>
         </div>
         <div>

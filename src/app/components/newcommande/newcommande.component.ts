@@ -36,7 +36,7 @@ export class NewcommandeComponent implements OnInit {
   ngOnInit(): void {
     this.getNiveau();
     this.getdomaines();
-    this.getConsigne();
+    this.gettypes();
     this.commandeForm = this.formBuilder.group({
       titre: ['', Validators.required],
       domaine: ['', Validators.required],
@@ -45,6 +45,7 @@ export class NewcommandeComponent implements OnInit {
       qualite: ['', Validators.required],
       datelivraison: ['', Validators.required],
       expressionclef: [[]],
+      type: [''],
       //nombreaparition: ['', Validators.required],
       consigne: [''],
       piecejoint: [''],
@@ -57,6 +58,7 @@ export class NewcommandeComponent implements OnInit {
   domaines: any = [];
   consignes : any =[];
   keywords: any =[];
+  types: any =[];
   
   getdomaines() {
     this.httpClient.get(`${environment.url}domaine`)
@@ -72,16 +74,27 @@ export class NewcommandeComponent implements OnInit {
     });
   }
 
-  getConsigne() {
-    this.httpClient.get(`${environment.url}consigne`)
+  gettypes() {
+    this.httpClient.get(`${environment.url}type`)
     .subscribe((data:any) => {
-      this.consignes = data 
+      this.types = data 
+    });
+  }
+
+  getconsigne(type:any) {
+    this.httpClient.get(`${environment.url}consigne/${type}`)
+    .subscribe((data:any) => {
+      console.log(data);
+      
+      this.commandeForm.patchValue({
+        consigne:  data.consigne
+      });
     });
   }
 
   addKeywordFromInput(event: MatChipInputEvent) {
     if (event.value) {
-      this.keywords.push(event.value);
+      this.keywords.push(" "+event.value);
       event.chipInput!.clear();
 
       this.commandeForm.patchValue({

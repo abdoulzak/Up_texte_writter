@@ -21,6 +21,7 @@ import { AuthInterceptorProvider } from './http-interceptor/auth-interceptor';
 import { NewcommandeComponent } from './components/newcommande/newcommande.component';
 import { ValidecommandeComponent } from './components/validecommande/validecommande.component';
 import { ConfirmationprisetexteComponent } from './components/confirmationprisetexte/confirmationprisetexte.component';
+import { DetalcommandeComponent } from './components/detalcommande/detalcommande.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ConfirmationprisetexteComponent } from './components/confirmationpriset
     NumberIntMaskDirective,
     NewcommandeComponent,
     ValidecommandeComponent,
-    ConfirmationprisetexteComponent
+    ConfirmationprisetexteComponent,
+    DetalcommandeComponent
   ],
   imports: [
     BrowserModule,
