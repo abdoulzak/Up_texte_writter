@@ -31,7 +31,8 @@ export class NewcommandeComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private httpClient: HttpClient,
     private router: Router,
-    private _snackBar: MatSnackBar,private _bottomSheetRef: MatBottomSheetRef<NewcommandeComponent>) {}
+    private _snackBar: MatSnackBar,
+    private _bottomSheetRef: MatBottomSheetRef<NewcommandeComponent>) {}
 
   ngOnInit(): void {
     this.getNiveau();
@@ -85,7 +86,6 @@ export class NewcommandeComponent implements OnInit {
     this.httpClient.get(`${environment.url}consigne/${type}`)
     .subscribe((data:any) => {
       console.log(data);
-      
       this.commandeForm.patchValue({
         consigne:  data.consigne
       });
@@ -96,7 +96,6 @@ export class NewcommandeComponent implements OnInit {
     if (event.value) {
       this.keywords.push(" "+event.value);
       event.chipInput!.clear();
-
       this.commandeForm.patchValue({
         expressionclef:  this.keywords
       });

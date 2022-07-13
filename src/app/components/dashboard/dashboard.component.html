@@ -67,6 +67,40 @@
             </mat-card>
         </mat-grid-tile>
       </mat-grid-list>
+      <mat-grid-list cols="3" *ngIf="mestexte && usertype == 'redacteur'">
+        <mat-grid-tile
+            *ngFor="let item of listemestextesclient">
+            <mat-card class="matcard">
+              <mat-card-subtitle>Titre</mat-card-subtitle>
+              <mat-card-title>{{item.titre}}</mat-card-title>
+              <mat-divider inset></mat-divider>
+              <mat-card-content>
+                <div>
+                  <p>Domaine <br>
+                  <b>{{item.domaine}}</b></p>
+                </div>
+                <div>
+                  <p>Nombre de mot <br>
+                  <b>{{item.nombredemot}} Mots</b></p>
+                </div>
+                <div>
+                  <p>Date de livraison <br>
+                  <b>{{item.datelivraison | date: 'dd/MM/YYYY' }}</b></p>
+                </div>
+              </mat-card-content>
+              <mat-divider inset></mat-divider>
+              <mat-card-actions>
+                <p class="mataction">
+                  <button mat-stroked-button color="accent">Livrer</button>
+                  <span class="example-spacer"></span>
+                  <button mat-stroked-button color="warn">Abandonner</button>
+                  <span class="example-spacer"></span>
+                  <button mat-flat-button color="primary" routerLink="../writter/{{item._id}}">Ecrire</button>
+                </p>
+              </mat-card-actions>
+            </mat-card>
+        </mat-grid-tile>
+      </mat-grid-list>
     </div>
     <!--div-->
   </div><br>

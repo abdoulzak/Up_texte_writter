@@ -1,13 +1,72 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card p-2 shadow" style="height: 78vh; overflow-y: scroll;">
-
-                <div class="pt-2">
-                    <div *ngIf="startsave">save</div>                    
-                    <div id="editeur" #editeur (input)="autoSaveEditeur(editeur.innerHTML)" class="card" contentEditable="true" [innerHTML]="detail"></div>
-                </div>
+    <mat-card class="writter">
+        <mat-card-content>
+            <div id="editeur" 
+                #editeur 
+                (input)="autoSaveEditeur(editeur.innerHTML)"
+                contentEditable="true" 
+                [innerHTML]="redaction">
             </div>
-        </div>
+        </mat-card-content>
+        <mat-card-actions>
+            <p class="cardfoot"> 
+                <b style="margin-top: 10px;"> 0 / 400 Mots</b>
+                <span class="example-spacer"></span>
+                <button mat-stroked-button color="primary">Enrégistrer</button>
+                <button mat-stroked-button>Effacer</button>
+                <button mat-stroked-button color="warn">Livrer</button>
+            </p>
+            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+        </mat-card-actions>
+    </mat-card>
+    <div class="detail">
+        <mat-card>
+            <mat-card-content>
+                <p>
+                    <b>Titre :</b>{{titre}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                    <b>Domaine de rédaction :</b> {{domaine}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                    <b>langue :</b> {{langue}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                    <b>Nombre de mot :</b> {{nombredemot}}
+                </p>
+            </mat-card-content>
+        </mat-card><br>
+        <mat-card>
+            <mat-card-content>
+                <p>
+                    <b>Qualite du texte :</b> {{qualite}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                    <b>Date livraison :</b> {{datelivraison | date: 'dd/MM/yyyy'}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                    <b>Expression clef :</b> {{expressionclef}}
+                </p>
+            </mat-card-content>
+        </mat-card><br>
+        <mat-card>
+            <mat-card-content>
+                <p>
+                    <b>consigne pour le rédacteur :</b> {{consigne}}
+                </p>
+                <mat-divider></mat-divider>
+                <p>
+                    <b>piecejoint :</b> {{piecejoint}}
+                </p>
+            </mat-card-content>
+        </mat-card>
     </div>
+</div>
+<div>
+    <p>© 2022 <a href="../../">Up Texte Writter</a></p>
 </div>

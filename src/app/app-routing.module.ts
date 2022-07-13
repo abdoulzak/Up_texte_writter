@@ -8,6 +8,7 @@ import { BeforeLoginService } from './services/before-login.service';
 import { AfterLoginService } from './services/after-login.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ValidecommandeComponent } from './components/validecommande/validecommande.component';
+import { WrittetexteComponent } from './components/writtetexte/writtetexte.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'login', component: LoginComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent, children:[
     { path: '', pathMatch: 'full', redirectTo: 'accueil' },
     { path: 'accueil', component: DashboardComponent  },
+    { path: 'writter/:dd', component: WrittetexteComponent  },
   ]},
   { path: 'commande/:dd', component: ValidecommandeComponent},
 ];

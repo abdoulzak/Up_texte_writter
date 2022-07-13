@@ -22,6 +22,7 @@ import { NewcommandeComponent } from './components/newcommande/newcommande.compo
 import { ValidecommandeComponent } from './components/validecommande/validecommande.component';
 import { ConfirmationprisetexteComponent } from './components/confirmationprisetexte/confirmationprisetexte.component';
 import { DetalcommandeComponent } from './components/detalcommande/detalcommande.component';
+import { WrittetexteComponent } from './components/writtetexte/writtetexte.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { DetalcommandeComponent } from './components/detalcommande/detalcommande
     NewcommandeComponent,
     ValidecommandeComponent,
     ConfirmationprisetexteComponent,
-    DetalcommandeComponent
+    DetalcommandeComponent,
+    WrittetexteComponent
   ],
   imports: [
     BrowserModule,

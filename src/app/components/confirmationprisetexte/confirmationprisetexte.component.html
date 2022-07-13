@@ -1,5 +1,5 @@
 <h2 style="color: #3f51b5;">Confirmation</h2>
-<div *ngIf="!confirmation">
+<div>
     <mat-card style="background-color: #3f51b5; color: #fff;">
         <mat-card-subtitle style="color: #fff;">Titre</mat-card-subtitle>
         <mat-card-title>{{item.titre}}</mat-card-title>
@@ -41,7 +41,7 @@
     <mat-spinner *ngIf="isLoarding"></mat-spinner>
     <br><br><br><br>
 </div>
-<div *ngIf="confirmation">
+<div>
     Vous avez pris en charge la rédaxtion de ce texte.
 
     <button mat-flat-button color="primary" (click)="startredaction()">Commencer la rédaction</button>
