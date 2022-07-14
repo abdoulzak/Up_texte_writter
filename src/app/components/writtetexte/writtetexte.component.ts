@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -27,6 +27,7 @@ export class WrittetexteComponent implements OnInit {
   date = ''
   redaction = ''
   montant = 0
+  motecrit = 0
 
   getcommande(val:any) {
     this.isLoarding= true;
@@ -46,7 +47,15 @@ export class WrittetexteComponent implements OnInit {
         this.consigne = data.commandes.consigne
         this.piecejoint = data.commandes.piecejoint
         this.date = data.commandes.date
-        this.redaction = data.commandes.redaction
+
+        if (!localStorage.getItem(this._id)) {
+          this.redaction = data.commandes.redaction
+          
+          var newdata = this.redaction.replace("<p>", "")
+          newdata = newdata.replace("</p>", "")
+          newdata = newdata.replace("<br>", "")
+          this.motecrit = newdata.split(" ").length
+        }
 
         this.qualite = data.niveauredacteur.forfaitclient
         this.montant = +this.qualite * +this.nombredemot
@@ -63,12 +72,47 @@ export class WrittetexteComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
+      if (localStorage.getItem(params['dd'])) {
+        this.redaction = localStorage.getItem(params['dd'])+""
+
+        var newdata = this.redaction.replace("<p>", "")
+        newdata = newdata.replace("</p>", "")
+        newdata = newdata.replace("<br>", "")
+        this.motecrit = newdata.split(" ").length
+      }
       this.getcommande(params['dd']);
     });
   }
 
-  autoSaveEditeur(data:any){
-    //localStorage.setItem(this.id, data)
-    console.log(data)
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'top';
+
+  snackBar(str: String) {
+    this._snackBar.open(`${str}`, 'OK', {
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
+
+  saveredaction(){
+    this.isLoarding = true;
+    this.httpClient.post(`${environment.url}commande/save/${this._id}`,
+    {redaction: localStorage.getItem(this._id)})
+    .subscribe((res:any) => {
+      this.isLoarding = false;
+      this.snackBar("Enrégistrement réussit!")
+    },
+    (error)=> { 
+      this.isLoarding = false;
+    });
+  }
+
+  autoSaveEditeur(data:any){
+    var newdata = data.replace("<p>", "")
+    newdata = newdata.replace("</p>", "")
+    newdata = newdata.replace("<br>", "")
+    this.motecrit = newdata.split(" ").length
+    localStorage.setItem(this._id, data)
+  }
+
 }

@@ -10,13 +10,13 @@
         </mat-card-content>
         <mat-card-actions>
             <p class="cardfoot"> 
-                <b style="margin-top: 10px;"> 0 / 400 Mots</b>
+                <b style="margin-top: 10px;"> {{motecrit}} / 400 Mots</b>
                 <span class="example-spacer"></span>
-                <button mat-stroked-button color="primary">Enrégistrer</button>
+                <button mat-stroked-button color="primary" (click)="saveredaction()">Enrégistrer</button>
                 <button mat-stroked-button>Effacer</button>
                 <button mat-stroked-button color="warn">Livrer</button>
             </p>
-            <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            <mat-progress-bar mode="indeterminate" *ngIf="isLoarding"></mat-progress-bar>
         </mat-card-actions>
     </mat-card>
     <div class="detail">
