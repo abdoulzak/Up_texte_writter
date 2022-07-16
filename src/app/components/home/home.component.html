@@ -10,6 +10,16 @@
                     <mat-icon>add</mat-icon> Nouvelle commande
                 </button>
             </div>
+            <div *ngIf="usertype == 'redacteur'">
+                <mat-card style="background-color: red;">
+                    <p>
+                        <b style="color: white;">Vous devez passer le test de niveau avant de soumissionner à un texte!</b>
+                    </p>
+                    <button mat-flat-button color="primary" style="margin-bottom: 20px;">
+                        Evaluation
+                    </button>
+                </mat-card>
+            </div>
             <mat-divider></mat-divider>
             <mat-selection-list #shoes [multiple]="false">
                 <mat-list-option *ngFor="let folder of folders">
