@@ -16,8 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent, children:[
     { path: '', pathMatch: 'full', redirectTo: 'accueil' },
-    { path: 'accueil', component: DashboardComponent  },
-    { path: 'writter/:dd', component: WrittetexteComponent  },
+    { path: 'accueil', component: DashboardComponent },
+    { path: 'writter/:dd', component: WrittetexteComponent },
     { path: 'test-de-niveau/:dd', component: WritetestniveauComponent },
   ]},
   { path: 'commande/:dd', component: ValidecommandeComponent},
