@@ -19,9 +19,10 @@ import { ConfirmationprisetexteComponent } from '../confirmationprisetexte/confi
 })
 export class DashboardComponent implements OnInit {
   panelOpenState = false;
-  listedata :any;
-  listemestextesclient :any;
-  listemestextesredacteur :any;
+  listedata:any;
+  listemestextesclient:any;
+  listemestestniveau:any
+  listemestextesredacteur:any;
   variablelocale = variablelocale;
   isLoarding = false;
 
@@ -45,6 +46,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.liste();
     this.listemestexte()
+    this.mestestniveau()
   }
   changepage(page:string):void {
     if (page == '1') {
@@ -83,6 +85,44 @@ export class DashboardComponent implements OnInit {
       this.isLoarding = false;
     });
   }
+
+  mestestniveau(){
+    this.listemestestniveau = [];
+    this.isLoarding = true;
+    this.httpClient.get(`${environment.url}testniveau`)
+    .subscribe((res:any) => {
+      this.listemestestniveau = res;
+      this.isLoarding = false;
+    },
+    (error)=> { 
+      this.isLoarding = false;
+    });
+  }
+  
+  lvrcommande(data: any){
+    this.isLoarding = true;
+    this.httpClient.post(`${environment.url}commande/lvr/${data}`, {})
+    .subscribe((res:any) => {
+      this.isLoarding = false;
+      this.listemestexte()
+    },
+    (error)=> { 
+      this.isLoarding = false;
+    });
+  }
+
+  lvr(data: any){
+    this.isLoarding = true;
+    this.httpClient.post(`${environment.url}testniveau/lvr/${data}`, {})
+    .subscribe((res:any) => {
+      this.isLoarding = false;
+      this.mestestniveau()
+    },
+    (error)=> { 
+      this.isLoarding = false;
+    });
+  }
+
   listemestexte(){
     this.isLoarding = true;
     this.httpClient.get(`${environment.url}commande/${this.usertype}/${localStorage.getItem("_id")}`)

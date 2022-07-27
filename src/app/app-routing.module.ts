@@ -9,6 +9,7 @@ import { AfterLoginService } from './services/after-login.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ValidecommandeComponent } from './components/validecommande/validecommande.component';
 import { WrittetexteComponent } from './components/writtetexte/writtetexte.component';
+import { WritetestniveauComponent } from './components/writetestniveau/writetestniveau.component';
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'login', component: LoginComponent},
@@ -17,6 +18,7 @@ const routes: Routes = [
     { path: '', pathMatch: 'full', redirectTo: 'accueil' },
     { path: 'accueil', component: DashboardComponent  },
     { path: 'writter/:dd', component: WrittetexteComponent  },
+    { path: 'test-de-niveau/:dd', component: WritetestniveauComponent },
   ]},
   { path: 'commande/:dd', component: ValidecommandeComponent},
 ];

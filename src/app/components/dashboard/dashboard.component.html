@@ -32,7 +32,7 @@
     </mat-button-toggle-group>
   </div>
 </div>
-  <mat-divider></mat-divider>
+  <mat-divider inset></mat-divider>
   <div *ngIf="mestexte">
     <!--div-->
     <div>
@@ -91,7 +91,7 @@
               <mat-divider inset></mat-divider>
               <mat-card-actions>
                 <p class="mataction">
-                  <button mat-stroked-button color="accent">Livrer</button>
+                  <button mat-stroked-button color="accent" (click)="lvrcommande(item._id)">Livrer</button>
                   <span class="example-spacer"></span>
                   <button mat-stroked-button color="warn">Abandonner</button>
                   <span class="example-spacer"></span>
@@ -100,7 +100,35 @@
               </mat-card-actions>
             </mat-card>
         </mat-grid-tile>
-      </mat-grid-list>
+      </mat-grid-list><br><br>
+      <mat-divider inset></mat-divider>
+      <div *ngIf="listemestestniveau">
+        <br>
+        <h2 class="form">Mon test de niveau</h2>
+        <mat-grid-list cols="1" *ngIf="mestexte && usertype == 'redacteur'">
+          <mat-grid-tile
+              *ngFor="let item of listemestestniveau">
+              <mat-card class="matcard">
+                <mat-card-subtitle>Titre</mat-card-subtitle>
+                <mat-card-title>{{item.titre}}</mat-card-title>
+                <mat-divider inset></mat-divider>
+                <mat-card-content>
+                  <div *ngIf="item.statut == 'lvr'">Texte livré et en attente de correction</div>
+                  <div *ngIf="item.statut == 'start'">Vous avez démarré la rédaction</div>
+                  <div *ngIf="item.statut == 'crg'">****</div>
+                </mat-card-content>
+                <mat-divider inset></mat-divider>
+                <mat-card-actions *ngIf="item.statut == 'start'">
+                  <p class="mataction">
+                    <button mat-stroked-button color="accent" (click)="lvr(item._id)">Livrer</button>
+                    <span class="example-spacer"></span>
+                    <button mat-flat-button color="primary" routerLink="../test-de-niveau/{{item._id}}">Ecrire</button>
+                  </p>
+                </mat-card-actions>
+              </mat-card>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </div>
     </div>
     <!--div-->
   </div><br>

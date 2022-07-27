@@ -7,7 +7,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { variablelocale } from 'src/app/models/request';
 import { AuthServiceService } from 'src/app/services/auth-service.service';
+import { environment } from 'src/environments/environment';
 import { NewcommandeComponent } from '../newcommande/newcommande.component';
+import { TestniveauComponent } from '../testniveau/testniveau.component';
 
 export interface Section {
   nom: string;
@@ -25,6 +27,8 @@ export class HomeComponent implements OnInit {
   panelOpenState = false;
   token= "";
   notification:any
+  isLoarding = false
+  listemestestniveau:any
 
   @HostBinding('class') className = '';
 
@@ -53,7 +57,7 @@ export class HomeComponent implements OnInit {
 
   usertype = localStorage.getItem("type")
   
-  constructor( private http: HttpClient,
+  constructor( private httpClient: HttpClient,
                public dialog: MatDialog,
                public auth: AuthServiceService,
                private overlay: OverlayContainer,
@@ -62,7 +66,13 @@ export class HomeComponent implements OnInit {
   openNewcommande(): void {
     this._bottomSheet.open(NewcommandeComponent);
   }
+
+  openTest(): void {
+    this._bottomSheet.open(TestniveauComponent);
+  }
+
   ngOnInit(): void {
+    this.mestestniveau()
     this.token = localStorage.getItem('userToken')!;
     //this.variablelocale.notificationCount(this.http)
 
@@ -71,18 +81,20 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  mestestniveau(){
+    this.listemestestniveau = [];
+    this.isLoarding = true;
+    this.httpClient.get(`${environment.url}testniveau`)
+    .subscribe((res:any) => {
+      this.listemestestniveau = res;
+      this.isLoarding = false;
+    },
+    (error)=> { 
+      this.isLoarding = false;
+    });
+  }
   logOut(){
     this.auth.logout();
-  }
-
-  joinGroupe(){
- /*   const dialogRef = this.dialog.open(JoinGroupeComponent, {
-      width: '250px',
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => { });
-*/
   }
 
   lastUpdate = new Promise((resolve, reject) => {

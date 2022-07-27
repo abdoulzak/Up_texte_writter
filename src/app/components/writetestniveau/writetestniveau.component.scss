@@ -1,0 +1,23 @@
+.container{
+    display: flex;
+    padding: 10px;
+}
+.writter{
+    width: 70vw;
+}
+#editeur{
+    min-height: 75vh;
+    border: 1px solid blue;
+    padding: 5px
+}
+.detail{
+    width: 27vw;
+    margin-left: 10px;
+}
+.cardfoot{
+    display: flex;
+}
+.cardfoot button{
+    margin-left: 5px;
+    margin-right: 5px;
+}

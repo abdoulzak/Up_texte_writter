@@ -1,0 +1,54 @@
+<mat-spinner *ngIf="isLoarding"></mat-spinner>
+<div *ngIf="!isLoarding">
+    <div style="text-align: center; padding: 20px;">
+        <h2>
+            Pour pouvoir rédiger sur Uptextwriter vous devez en tout premier lieu être évalué.
+        </h2>
+        <div>
+            <mat-card>
+                <mat-card-content>
+                    <p>
+                        <b>langue :</b> au choix
+                    </p>
+                    <mat-divider inset></mat-divider>
+                    <p>
+                        <b>Nombre de mot :</b> 350 / 500
+                    </p>
+                </mat-card-content>
+            </mat-card><br>
+            <mat-card>
+                <mat-card-content>
+                    <b>
+                        Rédigez un article de 350 mots minimum et 500 mots maximum portant sur un film que vous avez suivi. Nous évaluons la qualité en fonction des critères suivants : orthographe, grammaire, tournure et sens, mais aussi sur la rédaction SEO (sémantique, mot clef, structuration d'un texte en sous titre et paragraphe).
+                    </b>
+                </mat-card-content>
+            </mat-card><br>
+            <mat-card>
+                <mat-card-content>
+                    <p>
+                        <b>Date livraison :</b> 
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div>
+            <div style="margin: 40px;">
+                <button mat-flat-button color="primary" (click)="open()">Commencer maintenant</button>
+                <button mat-flat-button style="margin-left: 10px;">un autre jour<mat-icon>arrow_forward_ios</mat-icon></button>
+            </div>
+        </div>
+        <div>
+            <mat-card style="background-color: #f8d7da;">
+                <b>PLAGIAT :</b> Comme pour toute contrefaçon, le plagiat est puni, conformément au code de propriété intellectuelle de 3 ans d'emprisonnement et de 300 000 euros d'amende, vu les recrudescences d'escrocs, nous n'hésiterons pas nous et nos clients à porter plainte.
+            </mat-card>
+        </div>
+        <p><i>
+            Conditions générales d'utilisation
+        </i></p>
+    </div>
+</div>
+<div style="margin: 4%; text-align: center;">
+    <img src="../../../assets/images/logo.png" alt="">
+    <p>
+        Site design / logo © 2022 uptextewritter;<a href="#" target="_blank">Licence</a></p>
+</div>

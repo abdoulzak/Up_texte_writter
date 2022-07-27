@@ -10,60 +10,39 @@
         </mat-card-content>
         <mat-card-actions>
             <p class="cardfoot"> 
-                <b style="margin-top: 10px;"> {{motecrit}} / {{nombredemot}} Mots</b>
+                <b style="margin-top: 10px;"> {{motecrit}} / (350 ou 500) Mots</b>
                 <span class="example-spacer"></span>
                 <button mat-stroked-button color="primary" (click)="saveredaction()">Enrégistrer</button>
                 <button mat-stroked-button>Effacer</button>
-                <button mat-stroked-button color="warn">Livrer</button>
+                <button mat-stroked-button color="warn" (click)="lvr()">Livrer</button>
             </p>
             <mat-progress-bar mode="indeterminate" *ngIf="isLoarding"></mat-progress-bar>
         </mat-card-actions>
     </mat-card>
     <div class="detail">
-        <mat-card>
-            <mat-card-content>
-                <p>
-                    <b>Titre :</b>{{titre}}
-                </p>
-                <mat-divider></mat-divider>
-                <p>
-                    <b>Domaine de rédaction :</b> {{domaine}}
-                </p>
-                <mat-divider></mat-divider>
-                <p>
-                    <b>langue :</b> {{langue}}
-                </p>
-                <mat-divider></mat-divider>
-                <p>
-                    <b>Nombre de mot :</b> {{nombredemot}}
-                </p>
-            </mat-card-content>
+        <mat-card style="background-color: #d7daf8;">
+            <h2>
+                Pour pouvoir rédiger sur Uptextwriter vous devez en tout premier lieu être évalué.
+            </h2>
         </mat-card><br>
         <mat-card>
-            <mat-card-content>
-                <p>
-                    <b>Qualite du texte :</b> {{qualite}}
-                </p>
-                <mat-divider></mat-divider>
-                <p>
-                    <b>Date livraison :</b> {{datelivraison | date: 'dd/MM/yyyy'}}
-                </p>
-                <mat-divider></mat-divider>
-                <p>
-                    <b>Expression clef :</b> {{expressionclef}}
-                </p>
-            </mat-card-content>
+            <p>
+                <b>langue :</b> au choix
+            </p>
+            <mat-divider inset></mat-divider>
+            <p>
+                <b>Nombre de mot :</b> 350 / 500
+            </p>
         </mat-card><br>
         <mat-card>
-            <mat-card-content>
-                <p>
-                    <b>consigne pour le rédacteur :</b> {{consigne}}
-                </p>
-                <mat-divider></mat-divider>
-                <p>
-                    <b>piecejoint :</b> {{piecejoint}}
-                </p>
-            </mat-card-content>
+            <b>
+                Rédigez un article de 350 mots minimum et 500 mots maximum portant sur un film que vous avez suivi. Nous évaluons la qualité en fonction des critères suivants : orthographe, grammaire, tournure et sens, mais aussi sur la rédaction SEO (sémantique, mot clef, structuration d'un texte en sous titre et paragraphe).
+            </b>
+        </mat-card><br>
+        <mat-card>
+            <p>
+                <b>Date livraison :</b> 
+            </p>
         </mat-card>
     </div>
 </div>

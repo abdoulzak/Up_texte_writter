@@ -23,6 +23,8 @@ import { ValidecommandeComponent } from './components/validecommande/validecomma
 import { ConfirmationprisetexteComponent } from './components/confirmationprisetexte/confirmationprisetexte.component';
 import { DetalcommandeComponent } from './components/detalcommande/detalcommande.component';
 import { WrittetexteComponent } from './components/writtetexte/writtetexte.component';
+import { TestniveauComponent } from './components/testniveau/testniveau.component';
+import { WritetestniveauComponent } from './components/writetestniveau/writetestniveau.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { WrittetexteComponent } from './components/writtetexte/writtetexte.compo
     ValidecommandeComponent,
     ConfirmationprisetexteComponent,
     DetalcommandeComponent,
-    WrittetexteComponent
+    WrittetexteComponent,
+    TestniveauComponent,
+    WritetestniveauComponent
   ],
   imports: [
     BrowserModule,
