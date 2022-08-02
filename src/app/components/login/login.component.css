@@ -14,6 +14,9 @@
     min-height: 100vh;
     transition: all 0.5s ease;
 }
+.colonne3{
+    display: none;
+}
 .colcontent{
     padding: 10vw;
     color: white;
@@ -64,11 +67,18 @@
     width: 100%;
   }
 @media screen and (max-width: 575px) {
-    .colonne1{
-        display: none;        
+    .content{
+        display: block;
     }
-
+    .colonne1{
+        display: none;
+    }
     .colonne2{
+        width: 100%;
+    }
+    .colonne3{
+        background-color: #d9e6e9;
+        display: block;
         width: 100%;
     }
 }

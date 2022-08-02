@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar, MatSnackBarHorizontalPosition, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
-import { openKkiapayWidget, addKkiapayListener,removeKkiapayListener  } from 'kkiapay'
+//import { openKkiapayWidget, addKkiapayListener,removeKkiapayListener  } from 'kkiapay'
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -47,7 +47,7 @@ export class ValidecommandeComponent implements OnInit {
   }
 
   open() {
-    openKkiapayWidget({
+    /*openKkiapayWidget({
       amount: this.montant,
       api_key: "d124ad70f42211eca56ad905c440058f",
       sandbox: true,
@@ -56,7 +56,7 @@ export class ValidecommandeComponent implements OnInit {
       name: localStorage.getItem('nom')+" "+localStorage.getItem('prenom'),
       firstname: localStorage.getItem('nom')+"",
       lastname: localStorage.getItem('nom')+"",
-    })
+    })*/
   }
 
   successHandler() {
@@ -73,7 +73,7 @@ export class ValidecommandeComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.getcommande(params['dd']);
     });
-    addKkiapayListener('success',this.successHandler);
+    //addKkiapayListener('success',this.successHandler);
   }
 
   getcommande(val:any) {
@@ -106,6 +106,6 @@ export class ValidecommandeComponent implements OnInit {
 
 
   ngOnDestroy(){
-    removeKkiapayListener('success',this.successHandler)
+    //removeKkiapayListener('success',this.successHandler)
   }
 }

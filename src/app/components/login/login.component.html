@@ -96,24 +96,23 @@
                   </mat-form-field>                  
                   <mat-form-field class="login-full-width" appearance="fill">
                     <mat-label>Mot de passe </mat-label>
-                    <input type="password" matInput formControlName="password" required>
-                    <mat-error>
-                      Mot de passe trop court
-                    </mat-error>
+                    <input type="password" matInput formControlName="password" required #pwd0 (input)="verifpwd2(pwd0)">
                   </mat-form-field>
-                  <small>lettre minuscule et majuscule, <br> 
-                    chiffre, <br>
-                    caractère spécial, <br> 
-                    8 caractères</small>
+                  <small>
+                    <span [ngStyle]="cisValid?{color: 'black'}:{color: 'red'}">lettre minuscule et majuscule,</span><br> 
+                    <span [ngStyle]="cisValid0?{color: 'black'}:{color: 'red'}">chiffre</span><br>
+                    <span [ngStyle]="cisValid2?{color: 'black'}:{color: 'red'}">caractère spécial,</span><br>
+                    <span [ngStyle]="cisValid1?{color: 'black'}:{color: 'red'}">8 caractères</span><br>
+                  </small>
                   <mat-form-field class="login-full-width" appearance="fill">
                     <mat-label>Confirmer le mot de passe</mat-label>
-                    <input type="password" matInput formControlName="confirmPassword" required>
-                    <mat-error>
-                      Mot de passe différent
-                    </mat-error>
+                    <input type="password" matInput formControlName="confirmPassword" required #pwdc0 (input)="verifpwdc2(pwdc0)">
                   </mat-form-field>
+                  <small *ngIf="cisValid4">
+                    <span [ngStyle]="cisValid3?{color: 'black'}:{color: 'red'}">Mot de passe différent</span>
+                  </small>
                 </div>
-                <p *ngIf="message" class="erreur">{{message}}</p>
+                <p *ngIf="message" class="erreur">{{messageredacteur}}</p>
                 <div>
                   <mat-spinner *ngIf="redacteurbtn"></mat-spinner>
                   <button *ngIf="!redacteurbtn" mat-flat-button color="warn" type="submit">Inscription</button>
@@ -166,24 +165,23 @@
                   </mat-form-field>                  
                   <mat-form-field class="login-full-width" appearance="fill">
                     <mat-label>Mot de passe</mat-label>
-                    <input type="password" matInput formControlName="password" required>
-                    <mat-error>
-                      Mot de passe trop court
-                    </mat-error>
+                    <input type="password" matInput formControlName="password" required #pwd (input)="verifpwd(pwd)">
                   </mat-form-field>
-                  <small>lettre minuscule et majuscule, <br> 
-                    chiffre, <br>
-                    caractère spécial, <br> 
-                    8 caractères</small>
+                  <small>
+                    <span [ngStyle]="isValid?{color: 'black'}:{color: 'red'}">lettre minuscule et majuscule,</span><br> 
+                    <span [ngStyle]="isValid0?{color: 'black'}:{color: 'red'}">chiffre</span><br>
+                    <span [ngStyle]="isValid2?{color: 'black'}:{color: 'red'}">caractère spécial,</span><br>
+                    <span [ngStyle]="isValid1?{color: 'black'}:{color: 'red'}">8 caractères</span><br>
+                  </small>
                   <mat-form-field class="login-full-width" appearance="fill">
                     <mat-label>Confirmer le mot de passe</mat-label>
-                    <input type="password" matInput formControlName="confirmPassword" required>
-                    <mat-error>
-                      Mot de passe différent
-                    </mat-error>
+                    <input type="password" matInput formControlName="confirmPassword" required #pwdc (input)="verifpwdc(pwdc)">
                   </mat-form-field>
+                  <small *ngIf="isValid4">
+                    <span [ngStyle]="isValid3?{color: 'black'}:{color: 'red'}">Mot de passe différent</span>
+                  </small>
                 </div>
-                <p *ngIf="message" class="erreur">{{message}}</p>
+                <p *ngIf="message" class="erreur">{{messageclient}}</p>
                 <div>
                   <mat-spinner *ngIf="clientbtn"></mat-spinner>
                   <button *ngIf="!clientbtn" mat-flat-button color="primary" type="submit">Inscription</button>
@@ -194,6 +192,20 @@
               </form>
             </mat-card>
           </div>
+        </div>
+      </div>
+    </div>
+    <div class="colonne3">
+      <div class="colcontent">
+        <a class="logo" href="./">
+          <img src="../../../assets/images/logo.png" height="100" alt="">
+        </a>
+        <p class="bienvenue">
+          PLATEFORME DE REDACTION WEB DE REFERENCE POUR COMMANDER DES TEXTES PERTINENTS !
+        </p>
+        <div>
+          <button mat-raised-button color="warn" (click)="changePage('redacteur')" style="margin-right: 10px;">Devenez Rédacteur</button>
+          <button mat-raised-button color="primary" (click)="changePage('client')">Commandez du texte</button>
         </div>
       </div>
     </div>

@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   clientbtn = false;
   redacteurbtn = false;
   message='';
+  messageredacteur=''
+  messageclient=''
   erreur = ''
   erreurnumero = ''
   erreurmotdepasse = ''
@@ -38,6 +40,26 @@ export class LoginComponent implements OnInit {
 
   variablelocale= variablelocale;
   
+  isValid = false
+  isValid0 = false
+  isValid1 = false
+  isValid2 = false
+
+  pwd=''
+  pwdc=''
+  isValid3 = false
+  isValid4 = false
+/////
+  
+  cisValid = false
+  cisValid0 = false
+  cisValid1 = false
+  cisValid2 = false
+
+  cpwd=''
+  cpwdc=''
+  cisValid3 = false
+  cisValid4 = false
 
   constructor(private formBuilder: FormBuilder,
               private httpClient: HttpClient,
@@ -79,6 +101,54 @@ export class LoginComponent implements OnInit {
     str === "redacteur" ? this.redacteurpage = true : this.redacteurpage = false
   }
 
+  verifpwdc(data:any){
+    this.isValid4 = true
+    this.pwdc = data.value
+    if(this.pwd === this.pwdc){
+      this.isValid3 = true
+      this.isValid4 = false
+    } else this.isValid3 = false
+  }
+
+  verifpwd(data:any){
+    this.pwd = data.value
+    const passwordCriteria = /(?=.*[a-z])(?=.*[A-Z])/;
+    this.isValid = passwordCriteria.test(data.value);
+
+    const passwordCriteria0 = /(?=.*[0-9])/;
+    this.isValid0 = passwordCriteria0.test(data.value);
+
+    const passwordCriteria1 = /(?=.{8,})/;
+    this.isValid1 = passwordCriteria1.test(data.value);
+
+    const passwordCriteria2 = /(?=.*[!@#$%&^*])/;
+    this.isValid2 = passwordCriteria2.test(data.value);
+  }
+
+  verifpwdc2(data:any){
+    this.cisValid4 = true
+    this.cpwdc = data.value
+    if(this.cpwd === this.cpwdc){
+      this.cisValid3 = true
+      this.cisValid4 = false
+    } else this.cisValid3 = false
+  }
+
+  verifpwd2(data:any){
+    this.cpwd = data.value
+    const passwordCriteria = /(?=.*[a-z])(?=.*[A-Z])/;
+    this.cisValid = passwordCriteria.test(data.value);
+
+    const passwordCriteria0 = /(?=.*[0-9])/;
+    this.cisValid0 = passwordCriteria0.test(data.value);
+
+    const passwordCriteria1 = /(?=.{8,})/;
+    this.cisValid1 = passwordCriteria1.test(data.value);
+
+    const passwordCriteria2 = /(?=.*[!@#$%&^*])/;
+    this.cisValid2 = passwordCriteria2.test(data.value);
+  }
+
   onRegisterRedacteur(){
     this.redacteurbtn = true;
     if (this.redacteurForm.invalid) {
@@ -96,7 +166,7 @@ export class LoginComponent implements OnInit {
       },
       (erreur)=> {
         this.redacteurbtn= false;
-        this.message = "Une erreur vient de se produire, veuillez ressayer plus tard!";
+        this.messageredacteur = erreur.error.message;
       } );
   }
 
@@ -119,7 +189,7 @@ export class LoginComponent implements OnInit {
       },
       (erreur)=> {
         this.clientbtn= false;
-        this.message = "Une erreur vient de se produire, veuillez ressayer plus tard!";
+        this.messageclient = erreur.error.message;
       } );
   }
 
@@ -132,13 +202,12 @@ export class LoginComponent implements OnInit {
     this.httpClient.post(`${environment.url}user/login`, this.loginForm.value)
     .subscribe((data:any) => {        
       this.isLoarding= false;
-      console.log(data);
       if (data){
           this.auth.setSession(data);
       }
     },
     (erreur)=> {
-      this.message = "E-mail ou mot de passe invalide!";
+      this.message = erreur.error.message;
       this.isLoarding= false;
     } );
   }

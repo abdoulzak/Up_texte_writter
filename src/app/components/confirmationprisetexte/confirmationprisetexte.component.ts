@@ -15,8 +15,6 @@ export class ConfirmationprisetexteComponent implements OnInit {
   isLoarding = false;
   variablelocale = variablelocale;
   item = variablelocale.selectetexte
-  //confirmation = false
-
 
   constructor(private httpClient: HttpClient, 
     private router: Router,
@@ -30,7 +28,6 @@ export class ConfirmationprisetexteComponent implements OnInit {
     this.httpClient.post(`${environment.url}commande/soumission/${this.item._id}`,
     {user: localStorage.getItem("_id")})
     .subscribe((res:any) => {
-      console.log(res);
       this.isLoarding = false;
       this._bottomSheetRef.dismiss()
       this.router.navigate([`home/writter/${this.item._id}`])

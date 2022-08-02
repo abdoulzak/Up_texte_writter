@@ -1,177 +1,175 @@
-<div class="content">
-    <div class="form">
-        <mat-card>
-            <h2>EN COURS</h2>
+<div class="container">
+  <div class="row">
+      <div class="col col30">
+          <mat-card class="colh70">
+              <h4>EN COURS</h4>
+              <b>0</b>
+          </mat-card>
+      </div>
+      <div class="col col30">
+          <mat-card class="colh70">
+              <h4>EN PRIORITÉ</h4>
+              <b>0</b>
+          </mat-card>
+      </div>
+      <div class="col col30">
+          <mat-card class="colh70">
+            <h4>TOTALE</h4>
             <b>0</b>
-        </mat-card>
+          </mat-card>
+      </div>
+  </div><br>
+  <div class="row">
+    <div style="padding-left: 10px;" *ngIf="usertype == 'redacteur'">
+      <mat-button-toggle-group>
+        <mat-button-toggle (change)="changepage('1')">Mes textes</mat-button-toggle>
+        <mat-button-toggle (change)="changepage('2')" *ngIf="usertype == 'redacteur'">Rechercher un texte</mat-button-toggle>
+      </mat-button-toggle-group>
     </div>
-    <div class="form">
-        <mat-card>
-            <h2>EN PRIORITÉ</h2>
-            <b>0</b>
-        </mat-card>
-    </div>
-    <div class="form">
-        <mat-card>
-            <h2>TEXTE VALIDÉ ET PAYÉ</h2>
-            <b>0</b>
-        </mat-card>
-    </div>
-    <div class="form">
-        <mat-card>
-          <h2>TOTALE</h2>
-          <b>0</b>
-        </mat-card>
-    </div>
-</div><br>
-<div class="content">
-  <div style="padding-left: 10px;" *ngIf="usertype == 'redacteur'">
-    <mat-button-toggle-group>
-      <mat-button-toggle (change)="changepage('1')">Mes textes</mat-button-toggle>
-      <mat-button-toggle (change)="changepage('2')" *ngIf="usertype == 'redacteur'">Rechercher un texte</mat-button-toggle>
-    </mat-button-toggle-group>
   </div>
-</div>
-  <mat-divider inset></mat-divider>
-  <div *ngIf="mestexte">
-    <!--div-->
-    <div>
-      <h2 class="form">Mes textes</h2>
-      <!--- matBadge="." matBadgeColor="accent"  
-            matBadgePosition="after" matBadgeSize="large"-->
-      <mat-grid-list cols="3" *ngIf="mestexte && usertype == 'client'">
-        <mat-grid-tile
-            *ngFor="let item of listemestextesclient">
-            <mat-card class="matcard">
-              <mat-card-subtitle>Titre</mat-card-subtitle>
-              <mat-card-title>{{item.titre}}</mat-card-title>
-              <mat-divider inset></mat-divider>
-              <mat-card-content>
-                <div>
-                  <p>Domaine <br>
-                  <b>{{item.domaine}}</b></p>
-                </div>
-                <div>
-                  <p>Nombre de mot <br>
-                  <b>{{item.nombredemot}} Mots</b></p>
-                </div>
-                <div>
-                  <p>Date de livraison <br>
-                  <b>{{item.datelivraison | date: 'dd/MM/YYYY' }}</b></p>
-                </div>
-              </mat-card-content>
-              <mat-divider inset></mat-divider>
-              <mat-card-actions>
-                <button mat-flat-button color="primary">Détails</button>
-              </mat-card-actions>
-            </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-      <mat-grid-list cols="3" *ngIf="mestexte && usertype == 'redacteur'">
-        <mat-grid-tile
-            *ngFor="let item of listemestextesclient">
-            <mat-card class="matcard">
-              <mat-card-subtitle>Titre</mat-card-subtitle>
-              <mat-card-title>{{item.titre}}</mat-card-title>
-              <mat-divider inset></mat-divider>
-              <mat-card-content>
-                <div>
-                  <p>Domaine <br>
-                  <b>{{item.domaine}}</b></p>
-                </div>
-                <div>
-                  <p>Nombre de mot <br>
-                  <b>{{item.nombredemot}} Mots</b></p>
-                </div>
-                <div>
-                  <p>Date de livraison <br>
-                  <b>{{item.datelivraison | date: 'dd/MM/YYYY' }}</b></p>
-                </div>
-              </mat-card-content>
-              <mat-divider inset></mat-divider>
-              <mat-card-actions>
-                <p class="mataction">
-                  <button mat-stroked-button color="accent" (click)="lvrcommande(item._id)">Livrer</button>
-                  <span class="example-spacer"></span>
-                  <button mat-stroked-button color="warn">Abandonner</button>
-                  <span class="example-spacer"></span>
-                  <button mat-flat-button color="primary" routerLink="../writter/{{item._id}}">Ecrire</button>
-                </p>
-              </mat-card-actions>
-            </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list><br><br>
-      <mat-divider inset></mat-divider>
-      <div *ngIf="listemestestniveau">
-        <br>
-        <h2 class="form">Mon test de niveau</h2>
-        <mat-grid-list cols="1" *ngIf="mestexte && usertype == 'redacteur'">
-          <mat-grid-tile
-              *ngFor="let item of listemestestniveau">
+    <mat-divider inset></mat-divider>
+    <div *ngIf="mestexte">
+      <!--div-->
+      <div>
+        <h2 class="form">Mes textes</h2>
+        <!--- matBadge="." matBadgeColor="accent"  
+              matBadgePosition="after" matBadgeSize="large"-->
+        <div class="row" *ngIf="mestexte && usertype == 'client'">
+          <div class="col"
+              *ngFor="let item of listemestextesclient">
               <mat-card class="matcard">
                 <mat-card-subtitle>Titre</mat-card-subtitle>
                 <mat-card-title>{{item.titre}}</mat-card-title>
                 <mat-divider inset></mat-divider>
                 <mat-card-content>
-                  <div *ngIf="item.statut == 'lvr'">Texte livré et en attente de correction</div>
-                  <div *ngIf="item.statut == 'start'">Vous avez démarré la rédaction</div>
-                  <div *ngIf="item.statut == 'crg'">****</div>
+                  <div>
+                    <p>Domaine <br>
+                    <b>{{item.domaine}}</b></p>
+                  </div>
+                  <div>
+                    <p>Nombre de mot <br>
+                    <b>{{item.nombredemot}} Mots</b></p>
+                  </div>
+                  <div>
+                    <p>Date de livraison <br>
+                    <b>{{item.datelivraison | date: 'dd/MM/YYYY' }}</b></p>
+                  </div>
                 </mat-card-content>
                 <mat-divider inset></mat-divider>
-                <mat-card-actions *ngIf="item.statut == 'start'">
-                  <p class="mataction">
-                    <button mat-stroked-button color="accent" (click)="lvr(item._id)">Livrer</button>
-                    <span class="example-spacer"></span>
-                    <button mat-flat-button color="primary" routerLink="../test-de-niveau/{{item._id}}">Ecrire</button>
+                <mat-card-actions>
+                  <p *ngIf="item.statut != 'payer'">Commande non validé.
+                    <button mat-flat-button color="warn" routerLink="../../commande/{{item._id}}">VALIDÉ</button>
                   </p>
                 </mat-card-actions>
               </mat-card>
-          </mat-grid-tile>
-        </mat-grid-list>
+          </div>
+        </div>
+        <div class="row" *ngIf="mestexte && usertype == 'redacteur'">
+          <div class="col"
+              *ngFor="let item of listemestextesclient">
+              <mat-card class="matcard">
+                <mat-card-subtitle>Titre</mat-card-subtitle>
+                <mat-card-title>{{item.titre}}</mat-card-title>
+                <mat-divider inset></mat-divider>
+                <mat-card-content>
+                  <div>
+                    <p>Domaine <br>
+                    <b>{{item.domaine}}</b></p>
+                  </div>
+                  <div>
+                    <p>Nombre de mot <br>
+                    <b>{{item.nombredemot}} Mots</b></p>
+                  </div>
+                  <div>
+                    <p>Date de livraison <br>
+                    <b>{{item.datelivraison | date: 'dd/MM/YYYY' }}</b></p>
+                  </div>
+                </mat-card-content>
+                <mat-divider inset></mat-divider>
+                <mat-card-actions>
+                  <p class="mataction">
+                    <button mat-stroked-button color="accent" (click)="lvrcommande(item._id)">Livrer</button>
+                    <span class="example-spacer"></span>
+                    <button mat-stroked-button color="warn">Abandonner</button>
+                    <span class="example-spacer"></span>
+                    <button mat-flat-button color="primary" routerLink="../writter/{{item._id}}">Ecrire</button>
+                  </p>
+                </mat-card-actions>
+              </mat-card>
+          </div>
+        </div><br><br>
+        <mat-divider inset></mat-divider>
+        <div *ngIf="listemestestniveau && usertype == 'redacteur'">
+          <br>
+          <h2 class="form">Mon test de niveau</h2>
+          <div class="row" *ngIf="mestexte && usertype == 'redacteur'">
+            <div class="col"
+                *ngFor="let item of listemestestniveau">
+                <mat-card class="matcard">
+                  <mat-card-subtitle>Titre</mat-card-subtitle>
+                  <mat-card-title>{{item.titre}}</mat-card-title>
+                  <mat-divider inset></mat-divider>
+                  <mat-card-content>
+                    <div *ngIf="item.statut == 'lvr'">Texte livré et en attente de correction</div>
+                    <div *ngIf="item.statut == 'start'">Vous avez démarré la rédaction</div>
+                    <div *ngIf="item.statut == 'crg'">****</div>
+                  </mat-card-content>
+                  <mat-divider inset></mat-divider>
+                  <mat-card-actions *ngIf="item.statut == 'start'">
+                    <p class="mataction">
+                      <button mat-stroked-button color="accent" (click)="lvr(item._id)">Livrer</button>
+                      <span class="example-spacer"></span>
+                      <button mat-flat-button color="primary" routerLink="../test-de-niveau/{{item._id}}">Ecrire</button>
+                    </p>
+                  </mat-card-actions>
+                </mat-card>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <!--div-->
-  </div><br>
-  <div *ngIf="recherchetexte && usertype == 'redacteur'">
-    <div class="form">
-      <mat-form-field class="example-form-field" appearance="fill">
-        <input matInput type="text" placeholder="Mot clé">
-        <button matSuffix mat-icon-button>
-          <mat-icon>search</mat-icon>
-        </button>
-      </mat-form-field>
-    </div>
-    <div>
-      <mat-grid-list cols="3">
-        <mat-grid-tile
-            *ngFor="let item of listedata">
-            <mat-card class="matcard">
-              <mat-card-subtitle>Titre</mat-card-subtitle>
-              <mat-card-title>{{item.titre}}</mat-card-title>
-              <mat-divider inset></mat-divider>
-              <mat-card-content>
-                <div>
-                  <p>Domaine <br>
-                  <b>{{item.domaine}}</b></p>
-                </div>
-                <div>
-                  <p>Nombre de mot <br>
-                  <b>{{item.nombredemot}} Mots</b></p>
-                </div>
-                <div>
-                  <p>Date de livraison <br>
-                  <b>{{item.datelivraison }}</b></p>
-                </div>
-              </mat-card-content>
-              <mat-divider inset></mat-divider>
-              <mat-card-actions>
-                <button mat-flat-button color="warn" (click)="openBottomSheet(item)">Soumission</button>
-              </mat-card-actions>
-              <!--mat-card-footer>
-                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-              </mat-card-footer-->
-            </mat-card>
-        </mat-grid-tile>
-      </mat-grid-list>
-    </div>
-  </div><br>
+      <!--div-->
+    </div><br>
+    <div *ngIf="recherchetexte && usertype == 'redacteur'">
+      <div class="form">
+        <mat-form-field class="example-form-field" appearance="fill">
+          <input matInput type="text" placeholder="Mot clé">
+          <button matSuffix mat-icon-button>
+            <mat-icon>search</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div>
+        <div class="row">
+          <div class="col"
+              *ngFor="let item of listedata">
+              <mat-card class="matcard">
+                <mat-card-subtitle>Titre</mat-card-subtitle>
+                <mat-card-title>{{item.titre}}</mat-card-title>
+                <mat-divider inset></mat-divider>
+                <mat-card-content>
+                  <div>
+                    <p>Domaine <br>
+                    <b>{{item.domaine}}</b></p>
+                  </div>
+                  <div>
+                    <p>Nombre de mot <br>
+                    <b>{{item.nombredemot}} Mots</b></p>
+                  </div>
+                  <div>
+                    <p>Date de livraison <br>
+                    <b>{{item.datelivraison }}</b></p>
+                  </div>
+                </mat-card-content>
+                <mat-divider inset></mat-divider>
+                <mat-card-actions>
+                  <button mat-flat-button color="warn" (click)="openBottomSheet(item)">Soumission</button>
+                </mat-card-actions>
+                <!--mat-card-footer>
+                  <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+                </mat-card-footer-->
+              </mat-card>
+          </div>
+        </div>
+      </div>
+    </div><br>
+</div>
